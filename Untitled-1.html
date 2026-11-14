@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #AAAAAA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+  
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-card">
+        <div class="logo">⛽</div>
+        <h2>MPG Calculator</h2>
+        
+        <div class="input-group">
+            <label for="milesTraveled">Miles Traveled:</label>
+            <input type="number" id="milesTraveled" placeholder="e.g., 250" step="any">
+        </div>
+
+        <div class="input-group">
+            <label for="gallonsUsed">Gallons Used:</label>
+            <input type="number" id="gallonsUsed" placeholder="e.g., 10" step="any">
+        </div>
+
+        <button onclick="calculateMPG()">Calculate MPG</button>
+
+        <div class="result" id="resultText"></div>
+    </div>
+
+    <script>
+        function calculateMPG() {
+            const miles = parseFloat(document.getElementById('milesTraveled').value);
+            const gallons = parseFloat(document.getElementById('gallonsUsed').value);
+            const resultDiv = document.getElementById('resultText');
+
+            if (isNaN(miles) || isNaN(gallons)) {
+                resultDiv.style.color = "red";
+                resultDiv.innerText = "Please enter valid numbers.";
+                return;
+            }
+
+            if (gallons <= 0) {
+                resultDiv.style.color = "red";
+                resultDiv.innerText = "Gallons used must be greater than 0.";
+                return;
+            }
+            const milesPerGallon = miles / gallons;
+            resultDiv.style.color = "#28a745";
+            resultDiv.innerText = `Result: ${milesPerGallon.toFixed(2)} MPG`;
+        }
+    </script>
+
+</body>
+</html>
